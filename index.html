@@ -4,20 +4,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base target="_top">
     <style>
-        .body {
-              margin: 1em auto;
-              max-width: 40em;
-              width: 88%;
-            }
-            
-        .iframe {
-                width: 100%;
-                height: 100%;
-                aspect-ratio: 16 / 9;
-            }
+        .iframe-responsive-container {
+            position: relative; /* กำหนดให้เป็น relative เพื่อให้ iframe ที่เป็น absolute จัดตำแหน่งจากตรงนี้ */
+            width: 100%; /* ทำให้ container กว้างเต็มพื้นที่ */
+            padding-bottom: 75%; /* ปรับความสูงตามสัดส่วน (ตัวอย่าง: 4:3 = 75%) */
+            /* ถ้าเนื้อหาของคุณเป็น 16:9 ให้ใช้ padding-bottom: 56.25%; */
+            height: 0; /* กำหนดความสูงเริ่มต้นเป็น 0 ให้ padding-bottom กำหนดความสูง */
+            overflow: hidden; /* ซ่อนส่วนเกิน */
+            background: #f0f0f0; /* อาจจะใส่ background สีอ่อนๆ เพื่อให้เห็นกรอบก่อน iframe โหลด */
+        }
+        
+        .iframe-responsive-container iframe {
+            position: absolute; /* กำหนดให้ iframe เป็น absolute เพื่อให้วางทับใน container */
+            top: 0;
+            left: 0;
+            width: 100%; /* ทำให้ iframe กว้างเต็ม container */
+            height: 100%; /* ทำให้ iframe สูงเต็ม container */
+            border: 0; /* ลบ border ออก */
+        }
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbzTktrPbTMnRUpaRLLIchE9TbkDfC-kv4HFoGIq2EVuUv8eDdjlCz-161u6WVZxnbFN/exec" title="e-book" frameborder="0" allowfullscreen></iframe>
+    <div class="iframe-responsive-container">
+    <iframe src="https://script.google.com/macros/s/AKfycbzTktrPbTMnRUpaRLLIchE9TbkDfC-kv4HFoGIq2EVuUv8eDdjlCz-161u6WVZxnbFN/exec"
+            title="e-book"
+            frameborder="0"
+            allowfullscreen>
+    </iframe>
+</div>
 </body>
 </html>
